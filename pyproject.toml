@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "innodb-mysql-order-behavior"
+version = "0.1.0"
+description = "MySQL Large Data Operations and Buffer Pool Analysis"
+authors = ["mamsi <m.hossein95th@gmail.com>"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.9"
+mysql-connector-python = "^9.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
