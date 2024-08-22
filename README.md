@@ -50,3 +50,7 @@ Result Consistency: If the LIMIT 5 query returns different sequences after diffe
 # Conclusion
 
 This set of scripts allows for the examination of how large datasets interact with MySQL's buffer pool, potentially revealing insights into query performance and data retrieval consistency in a heavily loaded database environment.
+
+### Here are some links to public forums discussing this topic:
+1. https://www.quora.com/What-is-the-default-order-of-records-for-a-SELECT-statement-in-MySQL#:~:text=There%20is%20NO%20default%20order,specify%20an%20ORDER%20BY%20clause.
+2. https://forums.mysql.com/read.php?21,239471,239688#msg-239688
