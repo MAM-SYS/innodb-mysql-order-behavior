@@ -1,3 +1,4 @@
+-- BP Statistics
 SET @SCH = IF(VERSION()<'5.7','information_schema','performance_schema');
 
 SET @SQLSTMT=CONCAT("SELECT variable_value INTO @HOSTNAME        FROM ",@SCH,".global_variables WHERE variable_name='hostname'");
@@ -58,3 +59,10 @@ UNION SELECT 'Percentage Free'                ,LPAD(CONCAT(FORMAT(@IBP_PCT_FREE,
 UNION SELECT 'Percentage Misc'                ,LPAD(CONCAT(FORMAT(@IBP_PCT_MISC,2),' %'),@padding,' ')
 UNION SELECT 'Percentage Used'                ,LPAD(CONCAT(FORMAT(@IBP_PCT_FULL,2),' %'),@padding,' ')
 ;
+
+-- Calculate BP Hit Rate:
+SET @buffer_pool_reads = (SELECT variable_value FROM performance_schema.global_status WHERE variable_name = 'Innodb_buffer_pool_reads');
+SET @buffer_pool_read_requests = (SELECT variable_value FROM performance_schema.global_status WHERE variable_name = 'Innodb_buffer_pool_read_requests');
+
+SELECT
+    (@buffer_pool_read_requests - @buffer_pool_reads) / @buffer_pool_read_requests * 100 AS buffer_pool_hit_rate;
